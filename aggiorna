@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Aggiorna tutto: scarica da Garmin, ricalcola le metriche, dice quanto sono freschi i dati.
+#   ./aggiorna          ultimi 14 giorni
+#   ./aggiorna 30       ultimi 30 giorni
+set -e
+cd "$(dirname "$0")"
+GIORNI=${1:-14}
+PY=.venv/bin/python
+
+echo "▸ Attività e dati giornalieri (ultimi $GIORNI giorni)"
+$PY sistema/pull_attivita.py --days "$GIORNI" | sed 's/^/  /'
+echo
+echo "▸ Sedute di forza e altri sport (storico completo)"
+$PY sistema/pull_forza.py --days 730 | sed 's/^/  /'
+echo
+echo "▸ Metriche derivate (carico, ACWR, prontezza)"
+$PY sistema/metriche.py --days "$GIORNI" --quiet | sed 's/^/  /'
+echo
+echo "▸ Rimandi tra i documenti"
+$PY sistema/controlla.py | sed 's/^/  /'
+echo
+$PY sistema/freschezza.py

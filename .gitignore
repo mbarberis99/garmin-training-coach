@@ -1,0 +1,12 @@
+# Garmin session tokens: never in git
+.garmin_tokens/
+
+# Personal data: generated locally by ./aggiorna, never committed
+dati/
+
+# Python
+.venv/
+sistema/.venv/
+__pycache__/
+*.pyc
+.DS_Store
