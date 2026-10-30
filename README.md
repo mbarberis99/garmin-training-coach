@@ -1,6 +1,7 @@
-# Garmin training coach
+# My week OS
 
-I built this to prepare for my first marathon (Torino, November 2026) while working full time.
+The system I use to manage my week: work, a new project and training for my first marathon
+(Torino, November 2026).
 It pulls my data from Garmin Connect, computes the numbers my watch doesn't give me, and I use
 it with Claude as a coach: every week we look at the data, adjust the plan and put it on my
 calendar.
